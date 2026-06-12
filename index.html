@@ -131,6 +131,28 @@
       box-shadow: 0 0 45px rgba(255, 255, 255, 0.55);
     }
 
+    .moon::before {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      left: 24px;
+      top: 26px;
+      background: rgba(100, 116, 139, 0.45);
+    }
+
+    .moon::after {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      right: 22px;
+      bottom: 23px;
+      background: rgba(100, 116, 139, 0.38);
+    }
+
     .orbit-path {
       position: absolute;
       left: 83px;
@@ -247,7 +269,7 @@
         </div>
 
         <p id="progressText" class="text-sky-200 font-semibold mt-3">
-          0 de 5 memórias
+          0 de 6 memórias
         </p>
       </div>
     </section>
@@ -297,8 +319,20 @@
 
     const memorias = [
       {
+        foto: "0.JPG",
+        titulo: "Onde tudo começou",
+        texto: "Foi ali que você deu em cima de mim, com aquele jeitinho nada discreto, e acabou se apaixonando. Talvez essa tenha sido a primeira página bonita dessa história.",
+        pergunta: "Onde ficamos pela primeira vez?",
+        opcoes: [
+          "Sushima",
+          "Sítio",
+          "Festa do Rosário"
+        ],
+        correta: 0
+      },
+      {
         foto: "1.PNG",
-        titulo: "Primeira memória desbloqueada",
+        titulo: "Primeiro Eu te amo",
         texto: "Essa é uma daquelas lembranças que guardam muito mais do que aparece na foto.",
         pergunta: "Onde foi nosso primeiro Eu te amo?",
         opcoes: [
