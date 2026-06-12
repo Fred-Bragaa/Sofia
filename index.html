@@ -131,28 +131,6 @@
       box-shadow: 0 0 45px rgba(255, 255, 255, 0.55);
     }
 
-    .moon::before {
-      content: "";
-      position: absolute;
-      width: 13px;
-      height: 13px;
-      border-radius: 50%;
-      left: 24px;
-      top: 26px;
-      background: rgba(100, 116, 139, 0.45);
-    }
-
-    .moon::after {
-      content: "";
-      position: absolute;
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      right: 22px;
-      bottom: 23px;
-      background: rgba(100, 116, 139, 0.38);
-    }
-
     .orbit-path {
       position: absolute;
       left: 83px;
@@ -203,7 +181,6 @@
 
 <body class="star-bg">
 
-  <!-- TELA DE SENHA -->
   <section id="loginScreen" class="min-h-screen flex items-center justify-center px-4">
     <div class="glass rounded-[2rem] p-6 w-full max-w-sm text-center">
       <p class="text-sky-300 text-sm tracking-[0.35em] uppercase mb-4">
@@ -217,7 +194,7 @@
       <p class="text-slate-300 leading-relaxed mb-3">
         Digite a senha para abrir esse pequeno arquivo secreto.
       </p>
-      
+
       <div class="mb-6 rounded-2xl border border-sky-400/25 bg-sky-400/10 px-4 py-3">
         <p class="text-xs uppercase tracking-[0.22em] text-sky-300 mb-1">
           Dica
@@ -246,7 +223,6 @@
     </div>
   </section>
 
-  <!-- SITE -->
   <main id="conteudoSite" class="hidden max-w-xl mx-auto px-4 py-6 pb-16">
 
     <section class="text-center py-8">
@@ -279,7 +255,6 @@
     <section id="timeline" class="space-y-6"></section>
   </main>
 
-  <!-- ANIMAÇÃO FINAL EM TELA CHEIA -->
   <section id="finalOverlay" class="final-overlay">
     <div class="space-stage">
       <div class="space-stars"></div>
@@ -322,7 +297,7 @@
 
     const memorias = [
       {
-        foto: "IMG_7601.jpeg",
+        foto: "1.png",
         titulo: "Primeira memória desbloqueada",
         texto: "Essa é uma daquelas lembranças que guardam muito mais do que aparece na foto.",
         pergunta: "Onde foi nosso primeiro Eu te amo?",
@@ -346,16 +321,16 @@
         correta: 1
       },
       {
-        foto: "3.jpg",
-        titulo: "Nosso jeito",
-        texto: "Entre risadas, conversas e detalhes, a gente foi criando uma história só nossa.",
-        pergunta: "Qual dessas combina mais com a gente?",
+        foto: "3.png",
+        titulo: "A noite da Lua",
+        texto: "Uma lembrança simples, quietinha e bonita. Daquelas que parecem pequenas, mas ficam enormes por dentro.",
+        pergunta: "Quando você foi pra Itajubá, ficamos deitados na sala fazendo o que?",
         opcoes: [
-          "Filme, comida e preguiça",
-          "Aventura sem destino",
-          "As duas coisas, dependendo do dia"
+          "Vendo a Lua",
+          "Assistindo filme",
+          "Jogando algum jogo de tabuleiro"
         ],
-        correta: 2
+        correta: 0
       },
       {
         foto: "4.jpg",
