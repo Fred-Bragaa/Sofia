@@ -4,605 +4,365 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>Nossa Linha do Tempo</title>
+  <title>Nossas Memórias</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
 
   <style>
-    :root {
-      --bg: #070717;
-      --card: rgba(255, 255, 255, 0.08);
-      --text: #ffffff;
-      --muted: #d8c7ff;
-      --pink: #ff5fa2;
-      --pink-light: #ff9fcb;
-      --purple: #9b7bff;
-      --blue: #6ecbff;
-      --error: #ff6b6b;
-    }
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
     body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
       background:
-        radial-gradient(circle at top, rgba(155, 123, 255, 0.25), transparent 35%),
-        radial-gradient(circle at bottom, rgba(255, 95, 162, 0.22), transparent 35%),
-        var(--bg);
-      color: var(--text);
+        radial-gradient(circle at top left, rgba(56, 189, 248, 0.18), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(129, 140, 248, 0.16), transparent 34%),
+        #050816;
+      color: #f8fafc;
+      min-height: 100vh;
       overflow-x: hidden;
     }
 
-    body::before {
+    .glass {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .star-bg::before {
       content: "";
       position: fixed;
       inset: 0;
       background-image:
         radial-gradient(#ffffff 1px, transparent 1px),
         radial-gradient(#ffffff 1px, transparent 1px);
-      background-size: 60px 60px, 100px 100px;
-      background-position: 0 0, 30px 40px;
-      opacity: 0.15;
+      background-size: 70px 70px, 120px 120px;
+      background-position: 0 0, 35px 45px;
+      opacity: 0.12;
       pointer-events: none;
       z-index: -1;
     }
 
-    .screen {
-      width: 100%;
-      min-height: 100vh;
-      padding: 24px;
+    .option-btn {
+      transition: all 0.2s ease;
     }
 
-    .hidden {
-      display: none !important;
+    .option-btn:hover {
+      transform: translateY(-2px);
+      border-color: rgba(56, 189, 248, 0.75);
+      background: rgba(14, 165, 233, 0.12);
     }
 
-    /* LOGIN */
-
-    .login-screen {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .login-card {
-      width: 100%;
-      max-width: 390px;
-      padding: 28px 22px;
-      border-radius: 28px;
-      background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-      backdrop-filter: blur(18px);
-      text-align: center;
-    }
-
-    .login-card h1 {
-      font-size: 2rem;
-      margin-bottom: 12px;
-    }
-
-    .login-card p {
-      color: var(--muted);
-      line-height: 1.5;
-      margin-bottom: 22px;
-    }
-
-    .heart-big {
-      font-size: 3.5rem;
-      margin-bottom: 12px;
-      animation: pulse 1.8s infinite ease-in-out;
-    }
-
-    input {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      outline: none;
-      border-radius: 16px;
-      margin-bottom: 14px;
-      font-size: 1rem;
-      text-align: center;
-      color: var(--text);
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-    }
-
-    input::placeholder {
-      color: #c9bfe8;
-    }
-
-    button {
-      width: 100%;
-      padding: 15px;
-      border: none;
-      border-radius: 16px;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #fff;
-      background: linear-gradient(135deg, var(--pink), var(--purple));
-      cursor: pointer;
-      box-shadow: 0 10px 30px rgba(255, 95, 162, 0.3);
-    }
-
-    .error {
-      min-height: 22px;
-      margin-top: 12px;
-      color: var(--error);
-      font-size: 0.95rem;
-    }
-
-    /* CONTEÚDO */
-
-    .content {
-      max-width: 720px;
-      margin: 0 auto;
-      padding-bottom: 60px;
-    }
-
-    .hero {
-      text-align: center;
-      padding: 40px 0 30px;
-    }
-
-    .hero h2 {
-      font-size: 2.2rem;
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .counter {
-      margin-top: 18px;
-      padding: 14px;
-      border-radius: 20px;
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--pink-light);
-      font-weight: bold;
-    }
-
-    .timeline {
-      position: relative;
-      margin-top: 20px;
-      padding-left: 20px;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 8px;
-      width: 3px;
-      height: 100%;
-      border-radius: 999px;
-      background: linear-gradient(var(--pink), var(--purple), var(--blue));
-    }
-
-    .timeline-item {
-      position: relative;
-      margin-bottom: 34px;
-      padding-left: 18px;
-    }
-
-    .timeline-dot {
-      position: absolute;
-      left: -19px;
-      top: 24px;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--pink);
-      box-shadow: 0 0 20px var(--pink);
-    }
-
-    .memory-card {
-      overflow: hidden;
-      border-radius: 26px;
-      background: var(--card);
-      border: 1px solid rgba(255, 255, 255, 0.13);
-      box-shadow: 0 18px 50px rgba(0, 0, 0, 0.28);
-      backdrop-filter: blur(16px);
-    }
-
-    .memory-card img {
-      width: 100%;
-      height: 360px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .memory-body {
-      padding: 18px;
-    }
-
-    .memory-date {
-      color: var(--pink-light);
-      font-size: 0.9rem;
-      margin-bottom: 8px;
-      font-weight: bold;
-    }
-
-    .memory-body h3 {
-      margin-bottom: 8px;
-      font-size: 1.3rem;
-    }
-
-    .memory-body p {
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    /* ANIMAÇÃO FINAL */
-
-    .space-section {
-      margin-top: 40px;
-      text-align: center;
-      padding: 26px 12px;
-    }
-
-    .space-section h2 {
-      margin-bottom: 12px;
-      font-size: 1.8rem;
-    }
-
-    .space-section p {
-      color: var(--muted);
-      margin-bottom: 24px;
-      line-height: 1.6;
-    }
-
-    .space-scene {
-      position: relative;
-      height: 260px;
-      max-width: 420px;
-      margin: 0 auto;
-      border-radius: 30px;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 70% 25%, rgba(255, 255, 255, 0.18), transparent 12%),
-        linear-gradient(180deg, rgba(16, 18, 46, 0.95), rgba(8, 8, 26, 0.95));
-      border: 1px solid rgba(255, 255, 255, 0.12);
-    }
-
-    .earth,
-    .moon {
-      position: absolute;
-      border-radius: 50%;
-    }
-
-    .earth {
-      left: 24px;
-      bottom: 26px;
-      width: 72px;
-      height: 72px;
-      background:
-        radial-gradient(circle at 30% 30%, #6ecbff, #2374d8 55%, #103c83);
-      box-shadow: 0 0 30px rgba(110, 203, 255, 0.45);
-    }
-
-    .earth::after {
-      content: "";
-      position: absolute;
-      width: 35px;
-      height: 20px;
-      left: 14px;
-      top: 20px;
-      border-radius: 50%;
-      background: rgba(79, 220, 128, 0.9);
-      transform: rotate(-25deg);
-    }
-
-    .moon {
-      right: 32px;
-      top: 32px;
-      width: 58px;
-      height: 58px;
-      background:
-        radial-gradient(circle at 35% 35%, #fff, #cfcfe8 60%, #9b9bb8);
-      box-shadow: 0 0 26px rgba(255, 255, 255, 0.35);
+    .memory-hidden {
+      filter: blur(18px);
+      transform: scale(1.03);
     }
 
     .heart-travel {
-      position: absolute;
-      left: 52px;
-      bottom: 54px;
-      font-size: 2rem;
-      animation: heartTrip 6s infinite ease-in-out;
-      filter: drop-shadow(0 0 14px rgba(255, 95, 162, 0.9));
-    }
-
-    .orbit-line {
-      position: absolute;
-      left: 70px;
-      top: 78px;
-      width: 245px;
-      height: 115px;
-      border-top: 2px dashed rgba(255, 255, 255, 0.22);
-      border-radius: 50%;
-      transform: rotate(-22deg);
-    }
-
-    .final-message {
-      margin-top: 26px;
-      padding: 22px;
-      border-radius: 24px;
-      background: rgba(255, 255, 255, 0.08);
-      line-height: 1.6;
-      color: var(--muted);
-    }
-
-    .final-message strong {
-      color: #fff;
-    }
-
-    .restart {
-      margin-top: 20px;
-    }
-
-    @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-
-      50% {
-        transform: scale(1.12);
-      }
+      animation: heartTrip 7s infinite ease-in-out;
+      filter: drop-shadow(0 0 18px rgba(125, 211, 252, 0.9));
     }
 
     @keyframes heartTrip {
       0% {
-        left: 52px;
-        bottom: 54px;
+        left: 36px;
+        bottom: 42px;
         transform: scale(1) rotate(0deg);
       }
 
       45% {
-        left: 315px;
-        bottom: 180px;
-        transform: scale(1.15) rotate(12deg);
+        left: calc(100% - 80px);
+        bottom: 158px;
+        transform: scale(1.12) rotate(14deg);
       }
 
       55% {
-        left: 315px;
-        bottom: 180px;
-        transform: scale(1.15) rotate(-8deg);
+        left: calc(100% - 80px);
+        bottom: 158px;
+        transform: scale(1.12) rotate(-8deg);
       }
 
       100% {
-        left: 52px;
-        bottom: 54px;
+        left: 36px;
+        bottom: 42px;
         transform: scale(1) rotate(0deg);
-      }
-    }
-
-    @media (max-width: 480px) {
-      .screen {
-        padding: 18px;
-      }
-
-      .hero h2 {
-        font-size: 1.9rem;
-      }
-
-      .memory-card img {
-        height: 300px;
-      }
-
-      .space-scene {
-        height: 240px;
-      }
-
-      @keyframes heartTrip {
-        0% {
-          left: 50px;
-          bottom: 54px;
-        }
-
-        45% {
-          left: calc(100% - 88px);
-          bottom: 165px;
-        }
-
-        55% {
-          left: calc(100% - 88px);
-          bottom: 165px;
-        }
-
-        100% {
-          left: 50px;
-          bottom: 54px;
-        }
       }
     }
   </style>
 </head>
 
-<body>
-  <section id="loginScreen" class="screen login-screen">
-    <div class="login-card">
-      <div class="heart-big">💖</div>
-      <h1>Nosso cantinho</h1>
-      <p>Digite a data que começou oficialmente a nossa história.</p>
+<body class="star-bg">
+  <main class="max-w-xl mx-auto px-4 py-6 pb-16">
 
-      <input
-        id="passwordInput"
-        type="text"
-        placeholder="dd/mm/aaaa"
-        inputmode="numeric"
-      />
+    <!-- TOPO -->
+    <section class="text-center py-8">
+      <p class="text-sky-300 text-sm tracking-[0.35em] uppercase mb-3">
+        Arquivo secreto
+      </p>
 
-      <button onclick="entrar()">Entrar</button>
+      <h1 class="text-4xl font-bold leading-tight">
+        Nossas memórias
+      </h1>
 
-      <div id="errorMessage" class="error"></div>
-    </div>
-  </section>
+      <p class="text-slate-300 mt-4 leading-relaxed">
+        Algumas fotos ficaram guardadas em pequenos cofres.
+        Para abrir cada uma, você precisa acertar uma lembrança nossa.
+      </p>
 
-  <main id="mainContent" class="screen hidden">
-    <div class="content">
-      <section class="hero">
-        <h2>Nossa linha do tempo 🌙</h2>
-        <p>
-          Algumas fotos, alguns momentos e um pedacinho do caminho bonito
-          que a gente vem construindo.
+      <div class="mt-6 glass rounded-3xl p-4">
+        <p class="text-sm text-slate-400">Progresso desbloqueado</p>
+        <div class="w-full h-3 bg-slate-800 rounded-full mt-3 overflow-hidden">
+          <div id="progressBar" class="h-full bg-sky-400 rounded-full transition-all duration-500" style="width: 0%;"></div>
+        </div>
+        <p id="progressText" class="text-sky-200 font-semibold mt-3">0 de 5 memórias</p>
+      </div>
+    </section>
+
+    <!-- MEMÓRIAS -->
+    <section id="timeline" class="space-y-6"></section>
+
+    <!-- FINAL -->
+    <section id="finalSection" class="hidden mt-10 text-center">
+      <div class="glass rounded-[2rem] p-5">
+        <h2 class="text-2xl font-bold mb-3">
+          Da Terra até a Lua
+        </h2>
+
+        <p class="text-slate-300 leading-relaxed mb-5">
+          Porque tem coisa que não cabe numa foto, nem numa pergunta,
+          mas cabe direitinho na memória.
         </p>
 
-        <div id="counter" class="counter"></div>
-      </section>
-
-      <section class="timeline">
-        <article class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="memory-card">
-            <img src="1.jpg" alt="Nossa foto 1" />
-            <div class="memory-body">
-              <div class="memory-date">Momento 1</div>
-              <h3>O começo</h3>
-              <p>Foi aqui que uma lembrança virou uma parte bonita da nossa história.</p>
-            </div>
+        <div class="relative h-56 rounded-[2rem] overflow-hidden bg-slate-950 border border-slate-700">
+          <div class="absolute inset-0 opacity-25"
+               style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 38px 38px;">
           </div>
-        </article>
 
-        <article class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="memory-card">
-            <img src="2.jpg" alt="Nossa foto 2" />
-            <div class="memory-body">
-              <div class="memory-date">Momento 2</div>
-              <h3>Um dia especial</h3>
-              <p>Daqueles dias que parecem simples, mas ficam guardados com carinho.</p>
-            </div>
+          <div class="absolute left-6 bottom-7 w-16 h-16 rounded-full bg-blue-500 shadow-[0_0_35px_rgba(56,189,248,0.75)]">
+            <div class="absolute left-4 top-5 w-8 h-4 bg-emerald-400 rounded-full -rotate-12"></div>
           </div>
-        </article>
 
-        <article class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="memory-card">
-            <img src="3.jpg" alt="Nossa foto 3" />
-            <div class="memory-body">
-              <div class="memory-date">Momento 3</div>
-              <h3>Nós dois</h3>
-              <p>Entre risadas, conversas e detalhes, a gente foi virando casa um para o outro.</p>
-            </div>
+          <div class="absolute right-7 top-8 w-14 h-14 rounded-full bg-slate-200 shadow-[0_0_30px_rgba(255,255,255,0.55)]">
+            <div class="absolute left-4 top-4 w-3 h-3 rounded-full bg-slate-400 opacity-50"></div>
+            <div class="absolute right-3 bottom-3 w-2 h-2 rounded-full bg-slate-400 opacity-50"></div>
           </div>
-        </article>
 
-        <article class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="memory-card">
-            <img src="4.jpg" alt="Nossa foto 4" />
-            <div class="memory-body">
-              <div class="memory-date">Momento 4</div>
-              <h3>Mais uma memória</h3>
-              <p>Mais um capítulo leve, bonito e cheio desse sentimento que só a gente entende.</p>
-            </div>
+          <div class="absolute left-16 top-20 w-64 border-t border-dashed border-sky-200/30 rotate-[-24deg]"></div>
+
+          <div class="heart-travel absolute text-3xl">
+            🤍
           </div>
-        </article>
+        </div>
 
-        <article class="timeline-item">
-          <span class="timeline-dot"></span>
-          <div class="memory-card">
-            <img src="5.jpg" alt="Nossa foto 5" />
-            <div class="memory-body">
-              <div class="memory-date">Momento 5</div>
-              <h3>Até aqui</h3>
-              <p>E que venham muitos outros dias, fotos, planos e histórias para guardar.</p>
-            </div>
-          </div>
-        </article>
-      </section>
-
-      <section class="space-section">
-        <h2>Da Terra até a Lua 💫</h2>
-        <p>
-          Porque algumas coisas a gente não mede em quilômetros,
-          mede em carinho.
+        <p class="mt-6 text-slate-200 leading-relaxed">
+          Desde aquele dia, a minha parte favorita do caminho
+          é caminhar com você.
         </p>
-
-        <div class="space-scene">
-          <div class="orbit-line"></div>
-          <div class="earth"></div>
-          <div class="moon"></div>
-          <div class="heart-travel">💗</div>
-        </div>
-
-        <div class="final-message">
-          <strong>Mensagem final:</strong><br />
-          Desde aquele dia, minha parte favorita do caminho é caminhar com você.
-        </div>
-
-        <button class="restart" onclick="voltarAoTopo()">Ver de novo</button>
-      </section>
-    </div>
+      </div>
+    </section>
   </main>
 
   <script>
     /*
-      ALTERE AQUI:
-      Coloque a data real do pedido de namoro.
-      O formato esperado é dd/mm/aaaa.
+      Altere as perguntas, textos e respostas corretas aqui.
+
+      IMPORTANTE:
+      - "correta" é o índice da alternativa correta.
+      - 0 = primeira alternativa
+      - 1 = segunda alternativa
+      - 2 = terceira alternativa
     */
-    const DATA_PEDIDO_NAMORO = "24042022";
 
-    function entrar() {
-      const input = document.getElementById("passwordInput");
-      const erro = document.getElementById("errorMessage");
+    const memorias = [
+      {
+        foto: "1.jpg",
+        titulo: "Primeira memória desbloqueada",
+        texto: "Essa é uma daquelas lembranças que guardam muito mais do que aparece na foto.",
+        pergunta: "Onde foi nosso primeiro Eu te amo?",
+        opcoes: [
+          "São Gonçalo do Sapucaí",
+          "Capitólio",
+          "Itajubá"
+        ],
+        correta: 1
+      },
+      {
+        foto: "2.jpg",
+        titulo: "O pedido",
+        texto: "Uma memória com trilha sonora, frio na barriga e aquele brilho de começo bonito.",
+        pergunta: "Quando foi pedida em namoro, qual show estava acontecendo?",
+        opcoes: [
+          "Maria Cecília e Rodolfo",
+          "Thaeme e Thiago",
+          "César Menotti e Fabiano"
+        ],
+        correta: 1
+      },
+      {
+        foto: "3.jpg",
+        titulo: "Nosso jeito",
+        texto: "Entre risadas, conversas e detalhes, a gente foi criando uma história só nossa.",
+        pergunta: "Qual dessas combina mais com a gente?",
+        opcoes: [
+          "Filme, comida e preguiça",
+          "Aventura sem destino",
+          "As duas coisas, dependendo do dia"
+        ],
+        correta: 2
+      },
+      {
+        foto: "4.jpg",
+        titulo: "Mais um capítulo",
+        texto: "Alguns dias parecem simples, mas depois viram lembrança boa de revisitar.",
+        pergunta: "O que vale mais em um dia perfeito?",
+        opcoes: [
+          "O lugar",
+          "A companhia",
+          "A roupa da foto"
+        ],
+        correta: 1
+      },
+      {
+        foto: "5.jpg",
+        titulo: "Até aqui",
+        texto: "E que venham muitas outras fotos, viagens, planos e histórias para guardar.",
+        pergunta: "Qual é o melhor plano para o futuro?",
+        opcoes: [
+          "Viver muitas coisas juntos",
+          "Tirar mais fotos bonitas",
+          "Acertar todas as perguntas desse site"
+        ],
+        correta: 0
+      }
+    ];
 
-      const senhaDigitada = input.value.trim();
+    const timeline = document.getElementById("timeline");
+    const progressBar = document.getElementById("progressBar");
+    const progressText = document.getElementById("progressText");
+    const finalSection = document.getElementById("finalSection");
 
-      if (senhaDigitada === DATA_PEDIDO_NAMORO) {
-        document.getElementById("loginScreen").classList.add("hidden");
-        document.getElementById("mainContent").classList.remove("hidden");
-        atualizarContador();
-        window.scrollTo(0, 0);
+    let desbloqueadas = 0;
+
+    function renderizarMemorias() {
+      timeline.innerHTML = "";
+
+      memorias.forEach((memoria, index) => {
+        const card = document.createElement("article");
+        card.className = "glass rounded-[2rem] overflow-hidden";
+
+        card.innerHTML = `
+          <div class="relative">
+            <img
+              id="foto-${index}"
+              src="${memoria.foto}"
+              alt="${memoria.titulo}"
+              class="w-full h-[360px] object-cover memory-hidden transition-all duration-700"
+            />
+
+            <div id="lock-${index}" class="absolute inset-0 flex items-center justify-center bg-slate-950/50">
+              <div class="text-center">
+                <div class="text-4xl mb-2">🔒</div>
+                <p class="text-slate-200 font-semibold">Memória bloqueada</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-5">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="w-8 h-8 rounded-full bg-sky-400/15 text-sky-200 flex items-center justify-center text-sm font-bold">
+                ${index + 1}
+              </span>
+              <p class="text-sky-300 text-sm uppercase tracking-[0.18em]">
+                Pergunta ${index + 1}
+              </p>
+            </div>
+
+            <h2 class="text-xl font-bold mb-3">
+              ${memoria.pergunta}
+            </h2>
+
+            <div class="space-y-3" id="opcoes-${index}">
+              ${memoria.opcoes.map((opcao, opcaoIndex) => `
+                <button
+                  class="option-btn w-full text-left p-4 rounded-2xl border border-slate-700 bg-slate-900/70 text-slate-100"
+                  onclick="responder(${index}, ${opcaoIndex})"
+                >
+                  <span class="text-sky-300 font-bold mr-2">${String.fromCharCode(65 + opcaoIndex)})</span>
+                  ${opcao}
+                </button>
+              `).join("")}
+            </div>
+
+            <div id="conteudo-${index}" class="hidden mt-5 border-t border-slate-700 pt-5">
+              <h3 class="text-2xl font-bold mb-2">
+                ${memoria.titulo}
+              </h3>
+              <p class="text-slate-300 leading-relaxed">
+                ${memoria.texto}
+              </p>
+            </div>
+
+            <p id="feedback-${index}" class="mt-4 text-sm min-h-5"></p>
+          </div>
+        `;
+
+        timeline.appendChild(card);
+      });
+    }
+
+    function responder(memoriaIndex, opcaoIndex) {
+      const memoria = memorias[memoriaIndex];
+      const feedback = document.getElementById(`feedback-${memoriaIndex}`);
+      const foto = document.getElementById(`foto-${memoriaIndex}`);
+      const lock = document.getElementById(`lock-${memoriaIndex}`);
+      const conteudo = document.getElementById(`conteudo-${memoriaIndex}`);
+      const opcoes = document.getElementById(`opcoes-${memoriaIndex}`);
+
+      const jaDesbloqueada = conteudo.dataset.desbloqueada === "true";
+
+      if (jaDesbloqueada) {
         return;
       }
 
-      erro.textContent = "Ops... essa não é a nossa data 💭";
-      input.value = "";
-      input.focus();
-    }
+      if (opcaoIndex !== memoria.correta) {
+        feedback.textContent = "Quase... mas essa memória ainda não abriu.";
+        feedback.className = "mt-4 text-sm min-h-5 text-amber-300";
+        return;
+      }
 
-    function atualizarContador() {
-      const counter = document.getElementById("counter");
+      feedback.textContent = "Resposta certa. Memória desbloqueada.";
+      feedback.className = "mt-4 text-sm min-h-5 text-emerald-300";
 
-      const partes = DATA_PEDIDO_NAMORO.split("/");
-      const dia = Number(partes[0]);
-      const mes = Number(partes[1]) - 1;
-      const ano = Number(partes[2]);
+      foto.classList.remove("memory-hidden");
+      lock.classList.add("hidden");
+      conteudo.classList.remove("hidden");
+      conteudo.dataset.desbloqueada = "true";
 
-      const dataInicio = new Date(ano, mes, dia);
-      const hoje = new Date();
-
-      const diferencaMs = hoje - dataInicio;
-      const dias = Math.floor(diferencaMs / (1000 * 60 * 60 * 24));
-
-      counter.textContent = `Estamos juntos há ${dias} dias 💞`;
-    }
-
-    function voltarAoTopo() {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth"
+      const botoes = opcoes.querySelectorAll("button");
+      botoes.forEach((botao) => {
+        botao.disabled = true;
+        botao.classList.add("opacity-50", "cursor-not-allowed");
       });
+
+      botoes[opcaoIndex].classList.remove("opacity-50");
+      botoes[opcaoIndex].classList.add("border-emerald-400", "bg-emerald-400/10");
+
+      desbloqueadas++;
+      atualizarProgresso();
+
+      if (desbloqueadas === memorias.length) {
+        setTimeout(() => {
+          finalSection.classList.remove("hidden");
+          finalSection.scrollIntoView({ behavior: "smooth" });
+        }, 700);
+      }
     }
 
-    document
-      .getElementById("passwordInput")
-      .addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-          entrar();
-        }
-      });
+    function atualizarProgresso() {
+      const percentual = (desbloqueadas / memorias.length) * 100;
+
+      progressBar.style.width = `${percentual}%`;
+      progressText.textContent = `${desbloqueadas} de ${memorias.length} memórias`;
+    }
+
+    renderizarMemorias();
   </script>
 </body>
 </html>
