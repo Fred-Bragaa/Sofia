@@ -19,13 +19,6 @@
       overflow-x: hidden;
     }
 
-    .glass {
-      background: rgba(15, 23, 42, 0.72);
-      border: 1px solid rgba(148, 163, 184, 0.22);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
-    }
-
     .star-bg::before {
       content: "";
       position: fixed;
@@ -40,6 +33,18 @@
       z-index: -1;
     }
 
+    .glass {
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+    }
+
+    .memory-hidden {
+      filter: blur(18px);
+      transform: scale(1.03);
+    }
+
     .option-btn {
       transition: all 0.2s ease;
     }
@@ -50,125 +55,261 @@
       background: rgba(14, 165, 233, 0.12);
     }
 
-    .memory-hidden {
-      filter: blur(18px);
-      transform: scale(1.03);
+    .final-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background:
+        radial-gradient(circle at top, rgba(56, 189, 248, 0.22), transparent 35%),
+        radial-gradient(circle at bottom, rgba(15, 23, 42, 1), #020617 72%);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
     }
 
-    .heart-travel {
-      animation: heartTrip 7s infinite ease-in-out;
-      filter: drop-shadow(0 0 18px rgba(125, 211, 252, 0.9));
+    .final-overlay.show {
+      display: flex;
     }
 
-    @keyframes heartTrip {
+    .space-stage {
+      position: relative;
+      width: 100%;
+      max-width: 430px;
+      height: 620px;
+      border-radius: 36px;
+      overflow: hidden;
+      border: 1px solid rgba(148, 163, 184, 0.24);
+      background:
+        radial-gradient(circle at 70% 18%, rgba(255, 255, 255, 0.15), transparent 10%),
+        linear-gradient(180deg, #020617, #0f172a 58%, #111827);
+      box-shadow: 0 30px 100px rgba(0, 0, 0, 0.7);
+    }
+
+    .space-stars {
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#fff 1px, transparent 1px);
+      background-size: 42px 42px;
+      opacity: 0.22;
+    }
+
+    .earth {
+      position: absolute;
+      left: 50%;
+      bottom: 52px;
+      width: 128px;
+      height: 128px;
+      transform: translateX(-50%);
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 28%, #7dd3fc, #2563eb 58%, #0f2d75);
+      box-shadow: 0 0 60px rgba(56, 189, 248, 0.65);
+    }
+
+    .earth::after {
+      content: "";
+      position: absolute;
+      width: 58px;
+      height: 28px;
+      left: 28px;
+      top: 38px;
+      border-radius: 50%;
+      background: rgba(52, 211, 153, 0.88);
+      transform: rotate(-24deg);
+    }
+
+    .moon {
+      position: absolute;
+      top: 64px;
+      right: 42px;
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 32% 28%, #fff, #d1d5db 60%, #9ca3af);
+      box-shadow: 0 0 45px rgba(255, 255, 255, 0.55);
+    }
+
+    .moon::before {
+      content: "";
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      left: 24px;
+      top: 26px;
+      background: rgba(100, 116, 139, 0.45);
+    }
+
+    .moon::after {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      right: 22px;
+      bottom: 23px;
+      background: rgba(100, 116, 139, 0.38);
+    }
+
+    .orbit-path {
+      position: absolute;
+      left: 83px;
+      top: 160px;
+      width: 270px;
+      height: 290px;
+      border-top: 2px dashed rgba(186, 230, 253, 0.35);
+      border-radius: 50%;
+      transform: rotate(-40deg);
+    }
+
+    .heart-final {
+      position: absolute;
+      font-size: 44px;
+      left: 50%;
+      bottom: 96px;
+      animation: fullHeartTrip 8s ease-in-out forwards;
+      filter: drop-shadow(0 0 24px rgba(125, 211, 252, 0.95));
+    }
+
+    @keyframes fullHeartTrip {
       0% {
-        left: 36px;
-        bottom: 42px;
-        transform: scale(1) rotate(0deg);
+        left: 50%;
+        bottom: 96px;
+        transform: translateX(-50%) scale(1) rotate(0deg);
       }
 
-      45% {
-        left: calc(100% - 80px);
-        bottom: 158px;
-        transform: scale(1.12) rotate(14deg);
+      42% {
+        left: 77%;
+        bottom: 476px;
+        transform: translateX(-50%) scale(1.25) rotate(16deg);
       }
 
       55% {
-        left: calc(100% - 80px);
-        bottom: 158px;
-        transform: scale(1.12) rotate(-8deg);
+        left: 77%;
+        bottom: 476px;
+        transform: translateX(-50%) scale(1.18) rotate(-8deg);
       }
 
       100% {
-        left: 36px;
-        bottom: 42px;
-        transform: scale(1) rotate(0deg);
+        left: 50%;
+        bottom: 96px;
+        transform: translateX(-50%) scale(1) rotate(0deg);
       }
     }
   </style>
 </head>
 
 <body class="star-bg">
-  <main class="max-w-xl mx-auto px-4 py-6 pb-16">
 
-    <!-- TOPO -->
+  <!-- TELA DE SENHA -->
+  <section id="loginScreen" class="min-h-screen flex items-center justify-center px-4">
+    <div class="glass rounded-[2rem] p-6 w-full max-w-sm text-center">
+      <p class="text-sky-300 text-sm tracking-[0.35em] uppercase mb-4">
+        Entrada reservada
+      </p>
+
+      <h1 class="text-3xl font-bold mb-3">
+        Nossas Memórias
+      </h1>
+
+      <p class="text-slate-300 leading-relaxed mb-6">
+        Digite a senha para abrir esse pequeno arquivo secreto.
+      </p>
+
+      <input
+        id="senhaInput"
+        type="password"
+        inputmode="numeric"
+        placeholder="Digite a senha"
+        class="w-full rounded-2xl bg-slate-950/70 border border-slate-700 px-4 py-4 text-center outline-none focus:border-sky-400"
+      />
+
+      <button
+        onclick="entrarNoSite()"
+        class="mt-4 w-full rounded-2xl bg-sky-500 hover:bg-sky-400 text-slate-950 font-bold py-4 transition"
+      >
+        Entrar
+      </button>
+
+      <p id="erroSenha" class="text-amber-300 text-sm mt-4 min-h-5"></p>
+    </div>
+  </section>
+
+  <!-- SITE -->
+  <main id="conteudoSite" class="hidden max-w-xl mx-auto px-4 py-6 pb-16">
+
     <section class="text-center py-8">
       <p class="text-sky-300 text-sm tracking-[0.35em] uppercase mb-3">
         Arquivo secreto
       </p>
 
       <h1 class="text-4xl font-bold leading-tight">
-        Nossas memórias
+        Memórias desbloqueáveis
       </h1>
 
       <p class="text-slate-300 mt-4 leading-relaxed">
-        Algumas fotos ficaram guardadas em pequenos cofres.
-        Para abrir cada uma, você precisa acertar uma lembrança nossa.
+        Cada foto está guardada atrás de uma pergunta.
+        Acertou, desbloqueou.
       </p>
 
       <div class="mt-6 glass rounded-3xl p-4">
         <p class="text-sm text-slate-400">Progresso desbloqueado</p>
+
         <div class="w-full h-3 bg-slate-800 rounded-full mt-3 overflow-hidden">
           <div id="progressBar" class="h-full bg-sky-400 rounded-full transition-all duration-500" style="width: 0%;"></div>
         </div>
-        <p id="progressText" class="text-sky-200 font-semibold mt-3">0 de 5 memórias</p>
+
+        <p id="progressText" class="text-sky-200 font-semibold mt-3">
+          0 de 5 memórias
+        </p>
       </div>
     </section>
 
-    <!-- MEMÓRIAS -->
     <section id="timeline" class="space-y-6"></section>
+  </main>
 
-    <!-- FINAL -->
-    <section id="finalSection" class="hidden mt-10 text-center">
-      <div class="glass rounded-[2rem] p-5">
-        <h2 class="text-2xl font-bold mb-3">
+  <!-- ANIMAÇÃO FINAL EM TELA CHEIA -->
+  <section id="finalOverlay" class="final-overlay">
+    <div class="space-stage">
+      <div class="space-stars"></div>
+      <div class="orbit-path"></div>
+      <div class="moon"></div>
+      <div class="earth"></div>
+      <div class="heart-final">🤍</div>
+
+      <div class="absolute left-0 right-0 top-8 px-7 text-center">
+        <p class="text-sky-300 text-xs tracking-[0.32em] uppercase mb-3">
+          Missão completa
+        </p>
+
+        <h2 class="text-3xl font-bold">
           Da Terra até a Lua
         </h2>
 
-        <p class="text-slate-300 leading-relaxed mb-5">
-          Porque tem coisa que não cabe numa foto, nem numa pergunta,
-          mas cabe direitinho na memória.
-        </p>
-
-        <div class="relative h-56 rounded-[2rem] overflow-hidden bg-slate-950 border border-slate-700">
-          <div class="absolute inset-0 opacity-25"
-               style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 38px 38px;">
-          </div>
-
-          <div class="absolute left-6 bottom-7 w-16 h-16 rounded-full bg-blue-500 shadow-[0_0_35px_rgba(56,189,248,0.75)]">
-            <div class="absolute left-4 top-5 w-8 h-4 bg-emerald-400 rounded-full -rotate-12"></div>
-          </div>
-
-          <div class="absolute right-7 top-8 w-14 h-14 rounded-full bg-slate-200 shadow-[0_0_30px_rgba(255,255,255,0.55)]">
-            <div class="absolute left-4 top-4 w-3 h-3 rounded-full bg-slate-400 opacity-50"></div>
-            <div class="absolute right-3 bottom-3 w-2 h-2 rounded-full bg-slate-400 opacity-50"></div>
-          </div>
-
-          <div class="absolute left-16 top-20 w-64 border-t border-dashed border-sky-200/30 rotate-[-24deg]"></div>
-
-          <div class="heart-travel absolute text-3xl">
-            🤍
-          </div>
-        </div>
-
-        <p class="mt-6 text-slate-200 leading-relaxed">
-          Desde aquele dia, a minha parte favorita do caminho
-          é caminhar com você.
+        <p class="text-slate-300 mt-3 leading-relaxed text-sm">
+          Todas as memórias foram desbloqueadas.
         </p>
       </div>
-    </section>
-  </main>
+
+      <div class="absolute left-5 right-5 bottom-7 glass rounded-3xl p-5 text-center">
+        <p class="text-slate-200 leading-relaxed">
+          Desde aquele dia, a minha parte favorita do caminho é caminhar com você.
+        </p>
+
+        <button
+          onclick="fecharAnimacaoFinal()"
+          class="mt-4 w-full rounded-2xl bg-sky-400 hover:bg-sky-300 text-slate-950 font-bold py-3 transition"
+        >
+          Ver nossas memórias de novo
+        </button>
+      </div>
+    </div>
+  </section>
 
   <script>
-    /*
-      Altere as perguntas, textos e respostas corretas aqui.
-
-      IMPORTANTE:
-      - "correta" é o índice da alternativa correta.
-      - 0 = primeira alternativa
-      - 1 = segunda alternativa
-      - 2 = terceira alternativa
-    */
+    const SENHA_SITE = "24042022";
 
     const memorias = [
       {
@@ -236,9 +377,25 @@
     const timeline = document.getElementById("timeline");
     const progressBar = document.getElementById("progressBar");
     const progressText = document.getElementById("progressText");
-    const finalSection = document.getElementById("finalSection");
+    const finalOverlay = document.getElementById("finalOverlay");
 
     let desbloqueadas = 0;
+
+    function entrarNoSite() {
+      const senhaInput = document.getElementById("senhaInput");
+      const erroSenha = document.getElementById("erroSenha");
+
+      if (senhaInput.value.trim() === SENHA_SITE) {
+        document.getElementById("loginScreen").classList.add("hidden");
+        document.getElementById("conteudoSite").classList.remove("hidden");
+        window.scrollTo({ top: 0, behavior: "smooth" });
+        return;
+      }
+
+      erroSenha.textContent = "Senha incorreta. Tente de novo.";
+      senhaInput.value = "";
+      senhaInput.focus();
+    }
 
     function renderizarMemorias() {
       timeline.innerHTML = "";
@@ -256,7 +413,7 @@
               class="w-full h-[360px] object-cover memory-hidden transition-all duration-700"
             />
 
-            <div id="lock-${index}" class="absolute inset-0 flex items-center justify-center bg-slate-950/50">
+            <div id="lock-${index}" class="absolute inset-0 flex items-center justify-center bg-slate-950/55">
               <div class="text-center">
                 <div class="text-4xl mb-2">🔒</div>
                 <p class="text-slate-200 font-semibold">Memória bloqueada</p>
@@ -269,6 +426,7 @@
               <span class="w-8 h-8 rounded-full bg-sky-400/15 text-sky-200 flex items-center justify-center text-sm font-bold">
                 ${index + 1}
               </span>
+
               <p class="text-sky-300 text-sm uppercase tracking-[0.18em]">
                 Pergunta ${index + 1}
               </p>
@@ -284,7 +442,9 @@
                   class="option-btn w-full text-left p-4 rounded-2xl border border-slate-700 bg-slate-900/70 text-slate-100"
                   onclick="responder(${index}, ${opcaoIndex})"
                 >
-                  <span class="text-sky-300 font-bold mr-2">${String.fromCharCode(65 + opcaoIndex)})</span>
+                  <span class="text-sky-300 font-bold mr-2">
+                    ${String.fromCharCode(65 + opcaoIndex)})
+                  </span>
                   ${opcao}
                 </button>
               `).join("")}
@@ -294,6 +454,7 @@
               <h3 class="text-2xl font-bold mb-2">
                 ${memoria.titulo}
               </h3>
+
               <p class="text-slate-300 leading-relaxed">
                 ${memoria.texto}
               </p>
@@ -309,6 +470,7 @@
 
     function responder(memoriaIndex, opcaoIndex) {
       const memoria = memorias[memoriaIndex];
+
       const feedback = document.getElementById(`feedback-${memoriaIndex}`);
       const foto = document.getElementById(`foto-${memoriaIndex}`);
       const lock = document.getElementById(`lock-${memoriaIndex}`);
@@ -322,7 +484,7 @@
       }
 
       if (opcaoIndex !== memoria.correta) {
-        feedback.textContent = "Quase... mas essa memória ainda não abriu.";
+        feedback.textContent = "Quase... essa memória ainda não abriu.";
         feedback.className = "mt-4 text-sm min-h-5 text-amber-300";
         return;
       }
@@ -336,6 +498,7 @@
       conteudo.dataset.desbloqueada = "true";
 
       const botoes = opcoes.querySelectorAll("button");
+
       botoes.forEach((botao) => {
         botao.disabled = true;
         botao.classList.add("opacity-50", "cursor-not-allowed");
@@ -349,8 +512,7 @@
 
       if (desbloqueadas === memorias.length) {
         setTimeout(() => {
-          finalSection.classList.remove("hidden");
-          finalSection.scrollIntoView({ behavior: "smooth" });
+          mostrarAnimacaoFinal();
         }, 700);
       }
     }
@@ -361,6 +523,27 @@
       progressBar.style.width = `${percentual}%`;
       progressText.textContent = `${desbloqueadas} de ${memorias.length} memórias`;
     }
+
+    function mostrarAnimacaoFinal() {
+      finalOverlay.classList.add("show");
+    }
+
+    function fecharAnimacaoFinal() {
+      finalOverlay.classList.remove("show");
+
+      setTimeout(() => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      }, 200);
+    }
+
+    document.getElementById("senhaInput").addEventListener("keydown", function (event) {
+      if (event.key === "Enter") {
+        entrarNoSite();
+      }
+    });
 
     renderizarMemorias();
   </script>
